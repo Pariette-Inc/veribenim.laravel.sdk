@@ -62,6 +62,29 @@ Veribenim, Veri Koruma Kurulu tarafından referans alınan standartları içerir
 - **Çok Bölgeli CDN**: 99.99% uptime garantisi
 - **Async Loading**: Sayfa hızını hiç etkilemez
 
+### 🏢 Uçtan Uca KVKK Yönetim Platformu
+
+Veribenim sadece bir çerez SDK'sı değil, **tam kapsamlı bir KVKK/GDPR uyum yönetim platformu**dur:
+
+| Modül | Açıklama |
+|-------|----------|
+| **Veri Hakkı Talepleri (DSAR)** | KVKK Md.11 / GDPR Md.15-22: 7 talep tipi, otomatik 30 gün deadline |
+| **Veri İhlali Yönetimi** | GDPR Md.33: 72 saat countdown, risk seviyesi, durum akışı, otorite bildirim kaydı |
+| **VERBİS / RoPA Export** | KVKK VERBİS kaydı ve GDPR Md.30 RoPA: CSV/JSON export, 17 alan |
+| **Politika Yönetimi** | Gizlilik politikası, çerez politikası, KVKK aydınlatma — çoklu dil, PDF/HTML export |
+| **Uyumluluk Skoru** | 17 kural, 5 kategori, A-F notlandırma, düzeltme önerileri |
+| **Form Rızası Takibi** | İletişim, üyelik, bülten formlarındaki KVKK onayını kayıt altına alma |
+| **Webhook Sistemi** | 7 olay tipi, HMAC-SHA256, Slack/Teams/n8n entegrasyonu |
+| **Çerez Tarayıcı** | 50+ bilinen tracker otomatik tespiti |
+| **Tercih Merkezi** | Kalıcı panel + DSAR entegrasyonu |
+| **Veri Envanteri** | KVKK Md.16 / GDPR Md.30: Departman ve süreç bazlı veri haritalama, 20 veri kategorisi, VERBİS uyumlu export |
+| **Saklama-İmha Otomasyonu** | KVKK Md.7 / GDPR Md.17: Saklama politikaları, otomatik imha, imha tutanakları, 5 imha yöntemi |
+| **Risk Yönetimi** | KVKK Md.12 / GDPR Md.35: 5x5 risk matrisi, 7 risk kategorisi, aksiyon takibi, risk raporu export |
+| **İç Denetim & Aksiyon Takibi** | 6 denetim tipi, 0-100 puanlama, aksiyon atama ve gecikme takibi |
+| **Doküman Şablonları** | 10 hazır KVKK/GDPR şablonu, değişken sistemi, çoklu dil, versiyon takibi |
+| **Rıza Versiyonlama** | Onay metni versiyon takibi, yeniden onay mekanizması, versiyon karşılaştırma |
+| **AI Asistan** | RAG tabanlı KVKK/GDPR bilgi asistanı |
+
 ---
 
 ## Hızlı Başlangıç
