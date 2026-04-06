@@ -72,7 +72,7 @@ Veribenim sadece bir çerez SDK'sı değil, **tam kapsamlı bir KVKK/GDPR uyum y
 | **Veri İhlali Yönetimi** | GDPR Md.33: 72 saat countdown, risk seviyesi, durum akışı, otorite bildirim kaydı |
 | **VERBİS / RoPA Export** | KVKK VERBİS kaydı ve GDPR Md.30 RoPA: CSV/JSON export, 17 alan |
 | **Politika Yönetimi** | Gizlilik politikası, çerez politikası, KVKK aydınlatma — çoklu dil, PDF/HTML export |
-| **Uyumluluk Skoru** | 17 kural, 5 kategori, A-F notlandırma, düzeltme önerileri |
+| **Uyumluluk Skoru** | 22 kural, 5 kategori, A-F notlandırma, düzeltme önerileri |
 | **Form Rızası Takibi** | İletişim, üyelik, bülten formlarındaki KVKK onayını kayıt altına alma |
 | **Webhook Sistemi** | 7 olay tipi, HMAC-SHA256, Slack/Teams/n8n entegrasyonu |
 | **Çerez Tarayıcı** | 50+ bilinen tracker otomatik tespiti |
@@ -84,6 +84,12 @@ Veribenim sadece bir çerez SDK'sı değil, **tam kapsamlı bir KVKK/GDPR uyum y
 | **Doküman Şablonları** | 10 hazır KVKK/GDPR şablonu, değişken sistemi, çoklu dil, versiyon takibi |
 | **Rıza Versiyonlama** | Onay metni versiyon takibi, yeniden onay mekanizması, versiyon karşılaştırma |
 | **AI Asistan** | RAG tabanlı KVKK/GDPR bilgi asistanı |
+| **Meşru Menfaat Değerlendirmesi (LIA)** | KVK Kurul rehberi uyumlu 3-adım balans testi: Amaç → Zorunluluk → Dengeleme; passed/failed/pending |
+| **VERBİS Kayıt Asistanı** | KVKK Md.16: 50+ çalışan eşiği kontrolü, aktivite kaydı, JSON export |
+| **Rıza Yenileme** | KVK Kurul Çerez Rehberi 2022: 12 aylık zorunlu yenileme, otomatik `consent_renewal_required` flag |
+| **Rızayı Geri Çekme** | KVKK Md.11/1-e: `withdraw` aksiyonu, Facade ile tek satır, webhook tetikleyici |
+| **Veri Saklama & İmha** | KVKK Md.7: Ortam bazlı saklama süreleri, `data:purge-expired` Artisan komutu |
+| **Çerez Duvarı Koruması** | KVK Kurul kararı: Cookie wall yasağı denetimi, compliance score (ağırlık 12) |
 
 ---
 
@@ -211,6 +217,9 @@ Veribenim::savePreferences([
 
 // Sayfa ziyaretini logla
 Veribenim::logImpression();
+
+// Rızayı geri çek (KVKK Md.11/1-e)
+Veribenim::withdrawConsent($sessionId);
 ```
 
 ### Middleware ile Rota Koruması
@@ -250,6 +259,39 @@ Veribenim::submitDsar(
 | `portability` | Artikel 20 | Taşınabilir formatta veri alma |
 | `objection` | Artikel 21 | İtiraz etme hakkı |
 | `automated` | Artikel 22 | Otomatik kararlar karşı itiraz |
+
+### Blade — Rıza Geri Çekme Butonu
+
+```blade
+@ifConsented('analytics')
+    {{-- Analytics kodu --}}
+    <script>gtag('config', 'GA_ID');</script>
+@endIfConsented
+
+{{-- Tercih merkezi linki (her zaman görünür) --}}
+<a href="#" id="withdraw-consent">Tüm İzinleri Geri Çek</a>
+
+<script>
+document.getElementById('withdraw-consent').addEventListener('click', function() {
+    fetch('/consent/withdraw', { method: 'POST',
+        headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}'}
+    }).then(() => location.reload());
+});
+</script>
+```
+
+### Artisan Komutu — Periyodik İmha (KVKK Md.7)
+
+```bash
+# Test çalıştırması — silmeden önce ne silineceğini göster
+php artisan data:purge-expired --dry-run
+
+# Belirli bir ortam için
+php artisan data:purge-expired --token=ENV_TOKEN_HERE
+
+# Tüm ortamlar (scheduler her Çarşamba 03:00'te çalışır)
+php artisan data:purge-expired
+```
 
 ---
 
