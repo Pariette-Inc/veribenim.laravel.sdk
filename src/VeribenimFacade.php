@@ -13,6 +13,9 @@ use Veribenim\VeribenimClient;
  * @method static array|null getPreferences(?string $sessionId = null)
  * @method static array|null savePreferences(array $preferences, ?string $sessionId = null)
  * @method static string scriptTag()
+ * @method static array|null getFormSchema(string $slug)
+ * @method static array|null submitForm(string $slug, array $data)
+ * @method static string renderFormHtml(string $slug, array $options = [])
  *
  * @see VeribenimClient
  */

@@ -103,6 +103,7 @@ php artisan vendor:publish --tag=veribenim-config
 .env dosyasına:
 ```env
 VERIBENIM_TOKEN=your_api_token_here
+VERIBENIM_DOMAIN=example.com
 VERIBENIM_LANG=tr
 ```
 
@@ -140,6 +141,7 @@ php artisan vendor:publish --tag=veribenim-config
 
 ```env
 VERIBENIM_TOKEN=your_site_token_here
+VERIBENIM_DOMAIN=example.com
 VERIBENIM_LANG=tr
 VERIBENIM_DEBUG=false
 ```
@@ -382,6 +384,7 @@ Composer
 **Production:**
 ```env
 VERIBENIM_TOKEN=prod_token_xxx
+VERIBENIM_DOMAIN=example.com
 VERIBENIM_LANG=tr
 VERIBENIM_DEBUG=false
 ```
@@ -389,6 +392,7 @@ VERIBENIM_DEBUG=false
 **Development:**
 ```env
 VERIBENIM_TOKEN=dev_token_xxx
+VERIBENIM_DOMAIN=dev.example.com
 VERIBENIM_LANG=tr
 VERIBENIM_DEBUG=true
 ```

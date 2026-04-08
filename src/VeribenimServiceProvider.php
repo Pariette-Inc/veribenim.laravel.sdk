@@ -18,6 +18,7 @@ class VeribenimServiceProvider extends ServiceProvider
         $this->app->singleton(VeribenimConfig::class, function () {
             return new VeribenimConfig(
                 token:   config('veribenim.token'),
+                domain:  config('veribenim.domain', ''),
                 lang:    config('veribenim.lang'),
                 timeout: (int) config('veribenim.timeout'),
                 debug:   (bool) config('veribenim.debug'),
@@ -68,6 +69,14 @@ class VeribenimServiceProvider extends ServiceProvider
             });
             $blade->directive('endIfConsented', function () {
                 return '<?php endif; ?>';
+            });
+
+            // @veribenimForm('iletisim-formu')
+            // Formu sunucu taraflı HTML olarak render eder.
+            // Opsiyonel ikinci parametre: ['class' => '...', 'id' => '...']
+            $blade->directive('veribenimForm', function (string $expression) {
+                // expression: 'slug' veya 'slug', ['class' => 'my-form']
+                return "<?php echo app(\Veribenim\VeribenimClient::class)->renderFormHtml({$expression}); ?>";
             });
         });
     }
