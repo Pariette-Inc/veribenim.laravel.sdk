@@ -50,6 +50,6 @@ return [
     */
     'middleware' => [
         'redirect_to' => '/',
-        'required_categories' => ['necessary'],
+        'required_categories' => ['strictly_necessary'],
     ],
 ];

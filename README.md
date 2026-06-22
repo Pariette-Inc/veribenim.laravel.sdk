@@ -1,5 +1,7 @@
 # Veribenim Laravel SDK
 
+> ℹ️ **Kanonik kaynak:** Veribenim PHP SDK'ları artık tek bir monorepo'da toplanıyor: **`veribenim.php.sdk`** (`packages/laravel`). Geliştirme orada sürer; bu repo onunla senkron tutulur. Yeni katkıları monorepo'ya gönderin.
+
 **KVKK & GDPR Uyumlu Çerez Yönetimi ve Veri Koruma Platformu**
 
 [![Packagist Version](https://img.shields.io/packagist/v/veribenim/laravel.svg?style=flat-square)](https://packagist.org/packages/veribenim/laravel)

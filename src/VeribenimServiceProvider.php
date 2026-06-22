@@ -29,6 +29,11 @@ class VeribenimServiceProvider extends ServiceProvider
             return new VeribenimClient($app->make(VeribenimConfig::class));
         });
 
+        // @ifConsented direktifi ve programatik rıza kontrolü için
+        $this->app->singleton(ConsentHelper::class, function ($app) {
+            return new ConsentHelper($app->make(VeribenimClient::class));
+        });
+
         // Alias: app('veribenim')
         $this->app->alias(VeribenimClient::class, 'veribenim');
     }
